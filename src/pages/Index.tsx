@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { QuickViewModal } from '@/components/QuickViewModal';
 import { SearchOverlay } from '@/components/SearchOverlay';
+import { ChatVoiceButtons } from '@/components/ChatVoiceButtons';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <CartDrawer />
       <QuickViewModal />
       <SearchOverlay />
+      <ChatVoiceButtons />
     </div>
   );
 };
