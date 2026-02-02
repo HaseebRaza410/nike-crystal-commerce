@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 
@@ -141,9 +142,13 @@ export const CartDrawer = () => {
                   <span className="text-muted-foreground">Subtotal</span>
                   <span className="text-xl font-bold">${totalPrice.toFixed(2)}</span>
                 </div>
-                <button className="w-full btn-glow">
+                <Link 
+                  to="/checkout" 
+                  onClick={closeCart}
+                  className="w-full btn-glow text-center block"
+                >
                   Checkout
-                </button>
+                </Link>
                 <button 
                   onClick={closeCart}
                   className="w-full btn-glass text-center"
