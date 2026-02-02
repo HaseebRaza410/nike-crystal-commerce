@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ShoppingBag, Heart, Share2, RotateCw } from 'lucide-react';
 import { products } from '@/data/products';
 import { useCartStore } from '@/store/cartStore';
@@ -39,6 +39,8 @@ const ProductDetail = () => {
     setRotation(prev => prev + 45);
   };
 
+  const productImages = product.images || [product.image];
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -76,14 +78,19 @@ const ProductDetail = () => {
                   }}
                 />
                 
-                <motion.img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-contain relative z-10"
-                  animate={{ rotate: rotation }}
-                  transition={{ type: 'spring', stiffness: 100 }}
-                  style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 178, 255, 0.3))' }}
-                />
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={activeImageIndex}
+                    src={productImages[activeImageIndex]} 
+                    alt={`${product.name} - View ${activeImageIndex + 1}`}
+                    className="w-full h-full object-contain relative z-10"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1, rotate: rotation }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 100 }}
+                    style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 178, 255, 0.3))' }}
+                  />
+                </AnimatePresence>
                 
                 {/* 360 Controls */}
                 <button 
@@ -97,10 +104,13 @@ const ProductDetail = () => {
 
               {/* Thumbnail Gallery */}
               <div className="flex gap-3">
-                {[0, 1, 2, 3].map((index) => (
+                {productImages.map((img, index) => (
                   <button
                     key={index}
-                    onClick={() => setActiveImageIndex(index)}
+                    onClick={() => {
+                      setActiveImageIndex(index);
+                      setRotation(0);
+                    }}
                     className={`w-20 h-20 glass-card p-2 transition-all duration-300 ${
                       activeImageIndex === index 
                         ? 'ring-2 ring-primary' 
@@ -108,7 +118,7 @@ const ProductDetail = () => {
                     }`}
                   >
                     <img 
-                      src={product.image} 
+                      src={img} 
                       alt={`View ${index + 1}`}
                       className="w-full h-full object-contain"
                     />
