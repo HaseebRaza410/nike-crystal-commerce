@@ -1,19 +1,40 @@
 import { Product } from '@/store/cartStore';
 
 import shoeAirmax1 from '@/assets/shoe-airmax-1.png';
+import shoeAirmaxSide from '@/assets/shoe-airmax-side.png';
+import shoeAirmaxTop from '@/assets/shoe-airmax-top.png';
+import shoeAirmaxFront from '@/assets/shoe-airmax-front.png';
+
 import shoeAirforce1 from '@/assets/shoe-airforce-1.png';
+import shoeAirforceSide from '@/assets/shoe-airforce-side.png';
+import shoeAirforceTop from '@/assets/shoe-airforce-top.png';
+import shoeAirforceBack from '@/assets/shoe-airforce-back.png';
+import shoeAirforceFront from '@/assets/shoe-airforce-front.png';
+
 import shoeBasketball1 from '@/assets/shoe-basketball-1.png';
+import shoeBasketballBack from '@/assets/shoe-basketball-back.png';
+
 import shoeTraining1 from '@/assets/shoe-training-1.png';
+import shoeTrainingSide from '@/assets/shoe-training-side.png';
+import shoeTrainingTop from '@/assets/shoe-training-top.png';
+
 import shoeRetro1 from '@/assets/shoe-retro-1.png';
+import shoeRetroTop from '@/assets/shoe-retro-top.png';
+
 import shoeRunning2 from '@/assets/shoe-running-2.png';
 import shoeLifestyle2 from '@/assets/shoe-lifestyle-2.png';
 
-export const products: Product[] = [
+export interface ProductWithImages extends Product {
+  images: string[];
+}
+
+export const products: ProductWithImages[] = [
   {
     id: '1',
     name: 'Nike Air Max Pulse',
     price: 189,
     image: shoeAirmax1,
+    images: [shoeAirmax1, shoeAirmaxSide, shoeAirmaxTop, shoeAirmaxFront],
     category: 'Running',
     colors: ['#ffffff', '#000000', '#00B2FF'],
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12],
@@ -24,6 +45,7 @@ export const products: Product[] = [
     name: 'Nike Air Force 1 \'07',
     price: 149,
     image: shoeAirforce1,
+    images: [shoeAirforce1, shoeAirforceSide, shoeAirforceTop, shoeAirforceBack],
     category: 'Lifestyle',
     colors: ['#ffffff', '#000000', '#FF006E'],
     sizes: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12],
@@ -34,6 +56,7 @@ export const products: Product[] = [
     name: 'Nike Precision 7',
     price: 129,
     image: shoeBasketball1,
+    images: [shoeBasketball1, shoeBasketballBack, shoeBasketball1, shoeBasketballBack],
     category: 'Basketball',
     colors: ['#000000', '#FF0000', '#ffffff'],
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12, 13],
@@ -44,6 +67,7 @@ export const products: Product[] = [
     name: 'Nike Air Zoom Pegasus',
     price: 159,
     image: shoeTraining1,
+    images: [shoeTraining1, shoeTrainingSide, shoeTrainingTop, shoeTraining1],
     category: 'Running',
     colors: ['#ffffff', '#00B2FF', '#00FFC4'],
     sizes: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11],
@@ -54,6 +78,7 @@ export const products: Product[] = [
     name: 'Nike Court Legacy',
     price: 109,
     image: shoeRetro1,
+    images: [shoeRetro1, shoeRetroTop, shoeRetro1, shoeRetroTop],
     category: 'Lifestyle',
     colors: ['#F5F5DC', '#8B0000', '#000000'],
     sizes: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12],
@@ -64,6 +89,7 @@ export const products: Product[] = [
     name: 'Nike Free Run 5.0',
     price: 139,
     image: shoeRunning2,
+    images: [shoeRunning2, shoeTrainingSide, shoeTrainingTop, shoeRunning2],
     category: 'Running',
     colors: ['#808080', '#32CD32', '#ffffff'],
     sizes: [6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11],
@@ -74,6 +100,7 @@ export const products: Product[] = [
     name: 'Nike Blazer Low',
     price: 119,
     image: shoeLifestyle2,
+    images: [shoeLifestyle2, shoeAirforceSide, shoeAirforceTop, shoeLifestyle2],
     category: 'Lifestyle',
     colors: ['#000080', '#ffffff', '#D2691E'],
     sizes: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12],
@@ -84,6 +111,7 @@ export const products: Product[] = [
     name: 'Nike Metcon 9',
     price: 179,
     image: shoeTraining1,
+    images: [shoeTraining1, shoeTrainingSide, shoeTrainingTop, shoeTraining1],
     category: 'Training',
     colors: ['#ffffff', '#00B2FF', '#000000'],
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12],
