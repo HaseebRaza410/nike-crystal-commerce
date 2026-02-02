@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Mic, X } from 'lucide-react';
 
-export const ChatVoiceButtons = () => {
+export const ChatVoiceButtons = forwardRef<HTMLDivElement>((_, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
-      <AnimatePresence>
+    <div ref={ref} className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+      <AnimatePresence mode="popLayout">
         {isExpanded && (
           <>
             <motion.button
+              key="voice-btn"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -22,6 +23,7 @@ export const ChatVoiceButtons = () => {
             </motion.button>
             
             <motion.button
+              key="chat-btn"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -54,4 +56,6 @@ export const ChatVoiceButtons = () => {
       </motion.button>
     </div>
   );
-};
+});
+
+ChatVoiceButtons.displayName = 'ChatVoiceButtons';
