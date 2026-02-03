@@ -5,11 +5,10 @@ import { useCartStore } from '@/store/cartStore';
 import { useUIStore } from '@/store/uiStore';
 
 const navLinks = [
-  { name: 'New Releases', href: '#' },
-  { name: 'Men', href: '#' },
-  { name: 'Women', href: '#' },
-  { name: 'Kids', href: '#' },
-  { name: 'Sale', href: '#' },
+  { name: 'Home', href: '/' },
+  { name: 'Products', href: '#products' },
+  { name: 'Technology', href: '#technology' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export const Navbar = () => {
@@ -43,6 +42,16 @@ export const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center space-x-2 md:space-x-4">
+            {/* Shop Now Button - Desktop */}
+            <motion.a
+              href="#products"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:inline-flex btn-glow px-5 py-2 text-sm"
+            >
+              Shop Now
+            </motion.a>
+
             <button
               onClick={openSearch}
               className="p-2 rounded-full transition-colors hover:bg-white/10"

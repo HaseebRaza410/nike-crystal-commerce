@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Twitter, Facebook, Youtube } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Youtube, Send, CheckCircle } from 'lucide-react';
 
 const footerLinks = {
   Products: ['Air Max', 'Air Force 1', 'Jordan', 'Running', 'Basketball'],
@@ -9,8 +10,64 @@ const footerLinks = {
 };
 
 export const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setIsSubscribed(true);
+      setEmail('');
+      setTimeout(() => setIsSubscribed(false), 3000);
+    }
+  };
+
   return (
-    <footer className="border-t border-white/10 mt-20">
+    <footer id="contact" className="border-t border-white/10 mt-20">
+      {/* Newsletter Section */}
+      <div className="border-b border-white/10">
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">
+              Stay in the <span className="text-gradient-glow">Loop</span>
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Be the first to know about new releases, exclusive offers, and athlete stories.
+            </p>
+            <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto">
+              <div className="relative flex-1">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full bg-white/5 border border-white/10 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  required
+                />
+              </div>
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-glow px-6 py-3 flex items-center gap-2"
+              >
+                {isSubscribed ? (
+                  <>
+                    <CheckCircle className="w-4 h-4" />
+                    Subscribed
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    Subscribe
+                  </>
+                )}
+              </motion.button>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Logo and Social */}
@@ -58,10 +115,11 @@ export const Footer = () => {
           <p className="text-sm text-muted-foreground">
             © 2026 Nike, Inc. All Rights Reserved
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Terms of Use</a>
+            <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-foreground transition-colors">Cookie Settings</a>
+            <a href="#" className="hover:text-foreground transition-colors">Accessibility</a>
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
 import { Navbar } from '@/components/Navbar';
+import { HeroVideo } from '@/components/HeroVideo';
 import { Hero } from '@/components/Hero';
 import { ProductGrid } from '@/components/ProductGrid';
 import { FeaturesSection } from '@/components/FeaturesSection';
+import { CustomerReviews } from '@/components/CustomerReviews';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { QuickViewModal } from '@/components/QuickViewModal';
@@ -13,9 +15,11 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
+        <HeroVideo />
         <Hero />
         <ProductGrid />
         <FeaturesSection />
+        <CustomerReviews />
       </main>
       <Footer />
       
